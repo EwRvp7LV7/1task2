@@ -43,8 +43,6 @@ import (
 // 5 Возможность расширяемости проекта и многоуровневую архитектуру
 // 6 Тесты
 
-//могут быть одинаковые int, поэтому работаем с struct
-
 func Parser() {
 
 	//get html
@@ -54,7 +52,8 @@ func Parser() {
 		log.Fatalln("Short text")
 	}
 
-	//save page text to file
+	//save page text to file 
+  //rewrite!
 	err := ioutil.WriteFile("./simbirsoft.txt", []byte(ptext), 0644)
 	if err != nil {
 		log.Fatalln(err)
@@ -77,7 +76,7 @@ func Parser() {
 		}
 
 	}
-
+	//могут быть одинаковые int, поэтому работаем с struct
 	//using structs slice for sorting
 	type Pair struct {
 		Key   int
@@ -99,6 +98,7 @@ func Parser() {
 		fmt.Printf("%d, %v\n", p1.Key, p1.Value)
 	}
 
+		log.Println("Thats all!")
 }
 
 func GetPBody() string {
