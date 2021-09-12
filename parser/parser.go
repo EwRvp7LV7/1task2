@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"fmt"
+	//"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -9,6 +9,7 @@ import (
 	"strings"
 	"unicode"
 	"unicode/utf8"
+	"github.com/EwRvp7LV7/1task2/db"
 )
 
 // Что мы хотим от вас получить
@@ -43,6 +44,7 @@ import (
 // 5 Возможность расширяемости проекта и многоуровневую архитектуру
 // 6 Тесты
 
+
 func Parser() {
 
 	//get html
@@ -76,27 +78,23 @@ func Parser() {
 		}
 
 	}
-	//могут быть одинаковые int, поэтому работаем с struct
-	//using structs slice for sorting
-	type Pair struct {
-		Key   int
-		Value string
-	}
 
-	pl := []Pair{}
+	pl := []db1.Pair{}
 
 	for k, v := range muw1 {
-		pl = append(pl, Pair{v, k})
+		pl = append(pl, db1.Pair{v, k})
 	}
 
 	sort.Slice(pl, func(i, j int) bool {
-		return pl[i].Key > pl[j].Key
+		return pl[i].Key < pl[j].Key
 	})
 
 	//result!
 	for _, p1 := range pl {
-		fmt.Printf("%d, %v\n", p1.Key, p1.Value)
+		log.Printf("%d, %v\n", p1.Key, p1.Value)
 	}
+	
+	db1.AddWordsToDB(&pl)
 
 		log.Println("Thats all!")
 }
