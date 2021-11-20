@@ -8,20 +8,20 @@ import (
 	"reflect"
 )
 
-// type User struct {
-// 	Id    int     `validate:"-"`
-// 	Name  string  `validate:"presence,min=2,max=32"`
-// 	Email string  `validate:"email,required"`
-// 	Tmp   float32 `json:"followers,omitempty,string"`
-// 	//The “omitempty” option specifies that the field should be omitted from the encoding if the field has an empty value
-// 	//The “string” option signals that a field is stored as JSON inside a JSON-encoded string.
-// 	FirstName string `json:"fname"`           // `fname` as field name
-// 	LastName  string `json:"lname,omitempty"` // discard if value is empty
-// 	Email1    string `json:"-"`               // always discard
-// 	Age       int    `json:"-,"`              // `-` as field name
-// 	IsMale    bool   `json:",string"`         // keep original field name, coerce to a string
-// 	Profile   bool   `json:""`                // no effect
-// }
+type User struct {
+	Id    int     `validate:"-"`
+	Name  string  `validate:"presence,min=2,max=32"`
+	Email string  `validate:"email,required"`
+	Tmp   float32 `json:"followers,omitempty,string"`
+	//The “omitempty” option specifies that the field should be omitted from the encoding if the field has an empty value
+	//The “string” option signals that a field is stored as JSON inside a JSON-encoded string.
+	FirstName string `json:"fname"`           // `fname` as field name
+	LastName  string `json:"lname,omitempty"` // discard if value is empty
+	Email1    string `json:"-"`               // always discard
+	Age       int    `json:"-,"`              // `-` as field name
+	IsMale    bool   `json:",string"`         // keep original field name, coerce to a string
+	Profile   bool   `json:""`                // no effect
+}
 
 // https://medium.com/rungo/structures-in-go-76377cc106a2
 // Nested struct
@@ -38,67 +38,67 @@ import (
 // Two structs are comparable if they belong to the same type and have the same field values.
 
 // Name of the struct tag used in examples
-// const tagName = "validate"
+const tagName = "validate"
 
-// func MainStruct() {
-// 	// user := User{
-// 	// 	Id:    1,
-// 	// 	Name:  "John Doe",
-// 	// 	Email: "john@example",
-// 	// }
+func MainStruct() {
+	// user := User{
+	// 	Id:    1,
+	// 	Name:  "John Doe",
+	// 	Email: "john@example",
+	// }
 
-// 	// user := User{1,"John Doe","john@example", big.NewInt(), }
+	// user := User{1,"John Doe","john@example", big.NewInt(), }
 
-// 	//Anonymous struct
-// 	user1 := struct {
-// 		id    int    `validate:"-"`
-// 		name  string `validate:"presence,min=2,max=32"`
-// 		email string `validate:"email,required"`
-// 	}{
-// 		id:    1,
-// 		name:  "John Doe",
-// 		email: "john@example",
-// 	}
+	//Anonymous struct
+	user1 := struct {
+		id    int    `validate:"-"`
+		name  string `validate:"presence,min=2,max=32"`
+		email string `validate:"email,required"`
+	}{
+		id:    1,
+		name:  "John Doe",
+		email: "john@example",
+	}
 
-// 	// TypeOf returns the reflection Type that represents the dynamic type of variable.
-// 	// If variable is a nil interface value, TypeOf returns nil.
-// 	// t := reflect.TypeOf(user)
-// 	t := reflect.TypeOf(user1)
+	// TypeOf returns the reflection Type that represents the dynamic type of variable.
+	// If variable is a nil interface value, TypeOf returns nil.
+	// t := reflect.TypeOf(user)
+	t := reflect.TypeOf(user1)
 
-// 	// Get the type and kind of our user variable
-// 	fmt.Println("Type:", t.Name())
-// 	fmt.Println("Kind:", t.Kind())
+	// Get the type and kind of our user variable
+	fmt.Println("Type:", t.Name())
+	fmt.Println("Kind:", t.Kind())
 
-// 	// Iterate over all available fields and read the tag value
-// 	for i := 0; i < t.NumField(); i++ {
-// 		// Get the field, returns https://golang.org/pkg/reflect/#StructField
-// 		field := t.Field(i)
+	// Iterate over all available fields and read the tag value
+	for i := 0; i < t.NumField(); i++ {
+		// Get the field, returns https://golang.org/pkg/reflect/#StructField
+		field := t.Field(i)
 
-// 		//{Email  string validate:"email,required" 24 [2] false}
-// 		// type StructField struct {
-// 		// 	// Name is the field name.
-// 		// 	Name string
+		//{Email  string validate:"email,required" 24 [2] false}
+		// type StructField struct {
+		// 	// Name is the field name.
+		// 	Name string
 
-// 		// 	// PkgPath is the package path that qualifies a lower case (unexported)
-// 		// 	// field name. It is empty for upper case (exported) field names.
-// 		// 	// See https://golang.org/ref/spec#Uniqueness_of_identifiers
-// 		// 	PkgPath string
+		// 	// PkgPath is the package path that qualifies a lower case (unexported)
+		// 	// field name. It is empty for upper case (exported) field names.
+		// 	// See https://golang.org/ref/spec#Uniqueness_of_identifiers
+		// 	PkgPath string
 
-// 		// 	Type      Type      // field type
-// 		// 	Tag       StructTag // field tag string
-// 		// 	Offset    uintptr   // offset within struct, in bytes //смещение в структуре в байтах
-// 		// 	Index     []int     // index sequence for Type.FieldByIndex
-// 		// 	Anonymous bool      // is an embedded field
-// 		// }
+		// 	Type      Type      // field type
+		// 	Tag       StructTag // field tag string
+		// 	Offset    uintptr   // offset within struct, in bytes //смещение в структуре в байтах
+		// 	Index     []int     // index sequence for Type.FieldByIndex
+		// 	Anonymous bool      // is an embedded field
+		// }
 
-// 		fmt.Println("Field:", field)
+		fmt.Println("Field:", field)
 
-// 		// Get the field tag value
-// 		tag := field.Tag.Get(tagName)
+		// Get the field tag value
+		tag := field.Tag.Get(tagName)
 
-// 		fmt.Printf("%d. %v (%v), tag: '%v'\n", i+1, field.Name, field.Type.Name(), tag)
-// 	}
-// }
+		fmt.Printf("%d. %v (%v), tag: '%v'\n", i+1, field.Name, field.Type.Name(), tag)
+	}
+}
 
 // https://gist.github.com/slntopp/000435b4443a9da511876d6fbe51b757
 type PersonalData struct {
@@ -163,9 +163,9 @@ func readStructStr(val reflect.Value) (out string) {
 		// fmt.Println("Type.Kind:", val.Type())
 		val = val.Elem()
 	}
-	if val.Kind() != reflect.Struct {
-		return ""
-	}
+	// if val.Kind() != reflect.Struct { //slice!
+	// 	return ""
+	// }
 
 	for i := 0; i < val.NumField(); i++ {
 		f := val.Field(i)

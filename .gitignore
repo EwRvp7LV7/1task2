@@ -1,0 +1,6 @@
+*.toml
+*.exe
+*.log
+.vscode
+simbirsoft/*
+.logs/*
