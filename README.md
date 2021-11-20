@@ -1,2 +1,3 @@
-# 1task2
-Simple parser get words and count it quantity
+# 1tests
+For testing. \
+My own best practics.
