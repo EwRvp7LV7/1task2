@@ -53,6 +53,27 @@ import (
 // 	c <- sum // send sum to c
 // }
 
+func Once1() {
+
+	var once sync.Once
+	c := make(chan int, 10)
+
+	for{
+		once.Do(func() {
+			fmt.Println("Run once - first time, loading...")
+		})
+
+		c <- 1
+
+		fmt.Println("Run this every",  len(c))
+		if len(c) >8 {break}
+
+	}
+
+
+	fmt.Println("Run this every time")
+}
+
 func Channels() {
 	// var c chan int //is nil, blocked in and out  - deadlock!
 	// dataChannel := make(chan string)

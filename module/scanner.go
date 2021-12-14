@@ -27,7 +27,7 @@ func MainScan() {
     //Вы можете увеличить размер буфера вашего сканера
     //buf := make([]byte, 0, 64*1024)
     //scanner.Buffer(buf, 1024*1024) //1024*1024 => 1mb max (you can change value here to read larger files
-    for scanner.Scan() {
+    for scanner.Scan() {//Ждет до \n!
         fmt.Println(scanner.Text())
         break
     }

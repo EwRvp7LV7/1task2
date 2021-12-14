@@ -27,7 +27,9 @@ func run() (err error) {
 	// module.ExampleStreamWriter()
 	// module.CheckArrSize()
 	// module.CheckStruct()
-	module.MainStructTags()
+	// module.MainStructTags()
+	module.Loops()
+	// module.Once1()
 
 
 
