@@ -1,0 +1,41 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app.kubernetes.io/name: load-balancer-example
+#   name: hello-world
+# spec:
+#   replicas: 5
+#   selector:
+#     matchLabels:
+#       app.kubernetes.io/name: load-balancer-example
+#   template:
+#     metadata:
+#       labels:
+#         app.kubernetes.io/name: load-balancer-example
+#     spec:
+#       containers:
+#       - image: gcr.io/google-samples/node-hello:1.0
+#         name: hello-world
+#         ports:
+#         - containerPort: 8080
+
+
+
+
+# https://kubernetes.io/docs/tutorials/stateless-application/expose-external-ip-address/
+
+# The preceding command creates a Deployment and an associated ReplicaSet. The ReplicaSet has five Pods each of which runs the Hello World application.
+
+# kubectl get deployments hello-world
+# kubectl describe deployments hello-world
+
+# kubectl get replicasets
+# kubectl describe replicasets
+
+# kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+# kubectl get services my-service
+# kubectl describe services my-service
+
+
+

@@ -1,0 +1,95 @@
+Name:         tls-secret-api.nameofdomain
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  cert-manager.io/v1
+Kind:         Certificate
+Metadata:
+  Creation Timestamp:  2022-01-13T11:30:23Z
+  Generation:          1
+  Managed Fields:
+    API Version:  cert-manager.io/v1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:ownerReferences:
+          .:
+          k:{"uid":"af770c6f-f492-400d-b1a5-146ab4a4ce3d"}:
+            .:
+            f:apiVersion:
+            f:blockOwnerDeletion:
+            f:controller:
+            f:kind:
+            f:name:
+            f:uid:
+      f:spec:
+        .:
+        f:dnsNames:
+        f:issuerRef:
+          .:
+          f:group:
+          f:kind:
+          f:name:
+        f:secretName:
+        f:usages:
+      f:status:
+        .:
+        f:conditions:
+        f:notAfter:
+        f:notBefore:
+        f:renewalTime:
+        f:revision:
+    Manager:    controller
+    Operation:  Update
+    Time:       2022-01-13T11:30:32Z
+  Owner References:
+    API Version:           networking.k8s.io/v1
+    Block Owner Deletion:  true
+    Controller:            true
+    Kind:                  Ingress
+    Name:                  ingress-routes
+    UID:                   af770c6f
+  Resource Version:        879078
+  Self Link:               /apis/cert-manager.io/v1/namespaces/default/certificates/tls-secret-api.nameofdomain
+  UID:                     687aac15-358f-462a-a37b-a93aa3f1a77c
+Spec:
+  Dns Names:
+    api.nameofdomain
+  Issuer Ref:
+    Group:      cert-manager.io
+    Kind:       ClusterIssuer
+    Name:       letsencrypt-staging
+  Secret Name:  tls-secret-api.nameofdomain
+  Usages:
+    digital signature
+    key encipherment
+Status:
+  Conditions:
+    Last Transition Time:  2022-01-13T11:30:32Z
+    Message:               Certificate is up to date and has not expired
+    Observed Generation:   1
+    Reason:                Ready
+    Status:                True
+    Type:                  Ready
+  Not After:               2022-04-13T10:30:27Z
+  Not Before:              2022-01-13T10:30:28Z
+  Renewal Time:            2022-03-14T10:30:27Z
+  Revision:                1
+Name:         tls-secret-api.nameofdomain
+Namespace:    default
+Labels:       <none>
+Annotations:  cert-manager.io/alt-names: api.nameofdomain
+              cert-manager.io/certificate-name: tls-secret-api.nameofdomain
+              cert-manager.io/common-name: api.nameofdomain
+              cert-manager.io/ip-sans: 
+              cert-manager.io/issuer-group: cert-manager.io
+              cert-manager.io/issuer-kind: ClusterIssuer
+              cert-manager.io/issuer-name: letsencrypt-staging
+              cert-manager.io/uri-sans: 
+
+Type:  kubernetes.io/tls
+
+Data
+====
+tls.crt:  5757 bytes
+tls.key:  1679 bytes

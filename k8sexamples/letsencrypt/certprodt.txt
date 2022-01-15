@@ -1,0 +1,95 @@
+Name:         tls-secret-tunnel.nameofdomain
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  cert-manager.io/v1
+Kind:         Certificate
+Metadata:
+  Creation Timestamp:  2022-01-13T11:41:05Z
+  Generation:          1
+  Managed Fields:
+    API Version:  cert-manager.io/v1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:ownerReferences:
+          .:
+          k:{"uid":"5dbc9e9a"}:
+            .:
+            f:apiVersion:
+            f:blockOwnerDeletion:
+            f:controller:
+            f:kind:
+            f:name:
+            f:uid:
+      f:spec:
+        .:
+        f:dnsNames:
+        f:issuerRef:
+          .:
+          f:group:
+          f:kind:
+          f:name:
+        f:secretName:
+        f:usages:
+      f:status:
+        .:
+        f:conditions:
+        f:notAfter:
+        f:notBefore:
+        f:renewalTime:
+        f:revision:
+    Manager:    controller
+    Operation:  Update
+    Time:       2022-01-13T11:41:36Z
+  Owner References:
+    API Version:           networking.k8s.io/v1
+    Block Owner Deletion:  true
+    Controller:            true
+    Kind:                  Ingress
+    Name:                  ingress-routes
+    UID:                   5dbc9e9a
+  Resource Version:        880255
+  Self Link:               /apis/cert-manager.io/v1/namespaces/default/certificates/tls-secret-tunnel.nameofdomain
+  UID:                     64941ca6-bd76-4218-b4e0-01d0e0f8e5d1
+Spec:
+  Dns Names:
+    tunnel.nameofdomain
+  Issuer Ref:
+    Group:      cert-manager.io
+    Kind:       ClusterIssuer
+    Name:       letsencrypt-prod
+  Secret Name:  tls-secret-tunnel.nameofdomain
+  Usages:
+    digital signature
+    key encipherment
+Status:
+  Conditions:
+    Last Transition Time:  2022-01-13T11:41:05Z
+    Message:               Certificate is up to date and has not expired
+    Observed Generation:   1
+    Reason:                Ready
+    Status:                True
+    Type:                  Ready
+  Not After:               2022-04-13T10:41:34Z
+  Not Before:              2022-01-13T10:41:35Z
+  Renewal Time:            2022-03-14T10:41:34Z
+  Revision:                1
+Name:         tls-secret-tunnel.nameofdomain
+Namespace:    default
+Labels:       <none>
+Annotations:  cert-manager.io/alt-names: tunnel.nameofdomain
+              cert-manager.io/certificate-name: tls-secret-tunnel.nameofdomain
+              cert-manager.io/common-name: tunnel.nameofdomain
+              cert-manager.io/ip-sans: 
+              cert-manager.io/issuer-group: cert-manager.io
+              cert-manager.io/issuer-kind: ClusterIssuer
+              cert-manager.io/issuer-name: letsencrypt-prod
+              cert-manager.io/uri-sans: 
+
+Type:  kubernetes.io/tls
+
+Data
+====
+tls.crt:  5623 bytes
+tls.key:  1675 bytes

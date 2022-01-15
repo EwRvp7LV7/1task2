@@ -1,0 +1,120 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: fortune-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     # - host: test.example.com
+#     - http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: go-grpc-greeter-server
+#                 port:
+#                   number: 8080
+#         # - path: /v1
+#         #   pathType: Prefix
+#         #   backend:
+#         #     service:
+#         #       name: web
+#         #       port:
+#         #         number: 8080
+#         # - path: /v2
+#         #   pathType: Prefix
+#         #   backend:
+#         #     service:
+#         #       name: web2
+#         #       port:
+#         #         number: 8080
+#   # tls:
+#   # # This secret must exist beforehand
+#   # # The cert must also contain the subj-name grpctest.dev.mydomain.com
+#   # # https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#tls-certificates
+#   # - secretName: grpc-secret
+#   #   hosts:
+#   #     - grpc.example.com
+
+
+
+
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#     # nginx.ingress.kubernetes.io/hsts: "false"
+#     # nginx.ingress.kubernetes.io/allow-http: "true"
+#     # kubernetes.io/ingress.allow-http: "true"
+#     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+#   name: fortune-ingress
+#   namespace: default
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - host: grpc.example.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: go-grpc-greeter-server
+#             port:
+#               number: 80
+#   # tls:
+#   # # This secret must exist beforehand
+#   # # The cert must also contain the subj-name grpctest.dev.mydomain.com
+#   # # https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#tls-certificates
+#   # - secretName: grpc-secret
+#   #   hosts:
+#   #     - grpc.example.com
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: grpc-ingress
+#   annotations:
+#     # Note that gRPC services must be specified as backend services.
+#     # nginx.ingress.kubernetes.io/grpc-backend: "true"
+#     # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+# spec:
+#   ingressClassName: nginx
+#   defaultBackend:
+#     service:
+#       name: grpc-service
+#       port:
+#         number: 50051
+#   # tls:
+#   #   - hosts:
+#   #       # Certificate domain name
+#   #       - grpc.example.com
+#   #     secretName: grpc-secret
+#   rules:
+#     # gRPC service domain name
+#     # - host: grpc.example.com
+#     #  http:
+#     #     paths:
+#     #       - path: /
+#     #         pathType: Prefix
+#     #         backend:
+#     #           service:
+#     #             name: grpc-service
+#     #             port:
+#     #               number: 50051
+#     - http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: grpc-service
+#                 port:
+#                   number: 50051

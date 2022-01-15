@@ -1,0 +1,95 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: go-grpc-greeter-server
+#   name: go-grpc-greeter-server
+# spec:
+#   type: NodePort
+#   ports:
+#     # - name: tcp-port
+#     #   port: 8080
+#     - port: 8080
+#       protocol: TCP
+#       targetPort: 50051
+#   selector:
+#     app: go-grpc-greeter-server
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: go-grpc-greeter-server
+#   name: go-grpc-greeter-server
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: go-grpc-greeter-server
+#   template:
+#     metadata:
+#       labels:
+#         app: go-grpc-greeter-server
+#     spec:
+#       containers:
+#         - image: registry.cn-hangzhou.aliyuncs.com/acs-sample/grpc-server:latest
+#           resources:
+#             limits:
+#               cpu: 100m
+#               memory: 100Mi
+#             requests:
+#               cpu: 50m
+#               memory: 50Mi
+#           name: go-grpc-greeter-container
+#           ports:
+#             - containerPort: 50051
+
+
+
+
+
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: grpc-service
+#   labels:
+#     app: go-grpc-greeter-server
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: go-grpc-greeter-server
+#   template:
+#     metadata:
+#       labels:
+#         run: grpc-service
+#         app: go-grpc-greeter-server
+#     spec:
+#       containers:
+#       - image: registry.cn-hangzhou.aliyuncs.com/acs-sample/grpc-server:latest
+#         imagePullPolicy: Always
+#         name: grpc-service
+#         resources:
+#           limits:
+#             cpu: 100m
+#             memory: 100Mi
+#         ports:
+#         - containerPort: 50051
+#           protocol: TCP
+#       restartPolicy: Always
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: grpc-service
+# spec:
+#   ports:
+#   - port: 50051
+#     protocol: TCP
+#     targetPort: 50051
+#   selector:
+#     run: grpc-service
+#   sessionAffinity: None
+#   type: NodePort

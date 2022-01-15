@@ -1,0 +1,67 @@
+version: "3.8"
+services:
+  # arangodb_db_container:
+  #   #container_name: database-master
+  #   image: arangodb/arangodb:latest
+  #   environment:
+  #     ARANGO_ROOT_PASSWORD: openSesame
+  #   ports:
+  #     - 8529:8529
+  #   volumes:
+  #     - arangodb_data_container:/var/lib/arangodb3 #ArangoDB uses the volume /var/lib/arangodb3 as database directory to store the collection data and the volume 
+  #     - arangodb_apps_data_container:/var/lib/arangodb3-apps #var/lib/arangodb3-apps as apps directory to store any extensions.
+  #     #- ./database/schemes/:/docker-entrypoint-initdb.d/dumps/nocloud/
+  #   # networks:
+  #   #   - arangodb
+  # redis:
+  #   image: 'bitnami/redis:latest'
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #   ports:
+  #     - '6379:6379'
+  #     - '6379:6379/udp'
+  #   networks:
+  #     - app-tier
+
+  # coredns:
+  #   image: yorickps/coredns
+  #   #build: .
+  #   container_name: coredns 
+  #   restart: on-failure
+  #   # expose: #Раскрытие портов-это способ документирования того, какие порты используются, но на самом деле не сопоставляет и не открывает какие-либо порты
+  #   #   - '53'
+  #   #   - '53/udp'
+  #   ports:
+  #     - '1053:1053'
+  #     - '1053:1053/udp'
+  #   volumes:
+  #     - './config:/etc/coredns'
+  #   networks:
+  #     - app-tier
+  # redis:
+  #   container_name: redis
+  #   hostname: redis
+  #   image: bitnami/redis:latest
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+    # - REDIS_HOSTS=local:redis:6379
+    - REDIS_HOSTS=host.docker.internal:6379
+    ports:
+    - "8081:8081"
+    # networks:
+    #   - app-tier
+
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+# networks:
+#   app-tier:
+#   #   driver: bridge
+#     network_mode: "host"
+# volumes:
+#   arangodb_data_container:
+#   arangodb_apps_data_container:

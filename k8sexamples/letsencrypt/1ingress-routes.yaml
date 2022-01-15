@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-routes
+spec:
+  rules:
+    #change yourdomain.com to your domain
+    - host: api.nameofdomain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webserver-svc
+                port:
+                  number: 80
+    #change yourdomain.com to your domain
+    - host: tunnel.nameofdomain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webserver-svc
+                port:
+                  number: 80

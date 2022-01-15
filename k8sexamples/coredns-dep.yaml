@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: coredns-dep
+  name: coredns-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coredns-dep
+  template:
+    metadata:
+      labels:
+        app: coredns-dep
+    spec:
+      containers:
+        - image: ghcr.io/slntopp/coredns:latest
+          name: coredns
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: redis-service
+#   name: redis-service
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: redis-service
+#   template:
+#     metadata:
+#       labels:
+#         app: redis-service
+#     spec:
+#       containers:
+#         - image: redis:latest
+#           name: redis
+#           resources:
+#             limits:
+#               cpu: 100m
+#               memory: 100Mi

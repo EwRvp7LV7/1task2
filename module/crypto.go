@@ -349,6 +349,14 @@ func CBCEncrypter(password string, sl []byte) ([]byte, error) {
 
 	// iv :=  make([]byte, aes.BlockSize)
 
+	// c := 10
+	// b := make([]byte, c)
+	// _, err := rand.Read(b)
+	// if err != nil {
+	// 	fmt.Println("error:", err)
+	// 	return
+	// }
+
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
 		return nil, (err)
 	}

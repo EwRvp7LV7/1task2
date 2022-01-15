@@ -28,8 +28,10 @@ func run() (err error) {
 	// module.CheckArrSize()
 	// module.CheckStruct()
 	// module.MainStructTags()
-	module.Loops()
+	// module.Loops()
 	// module.Once1()
+	// module.Context1()
+	module.JsonBytesArr()
 
 
 

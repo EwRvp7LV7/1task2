@@ -107,22 +107,41 @@ func restClient1() {
 
 	fmt.Println("restClient1 start!")
 
-	response, err := http.Get("http://localhost:8090/sometestpass1/")
+	// response, err := http.Get("http://localhost:8090/sometestpass1/")
+	// if err != nil {
+	// 	fmt.Println("Client:Failed to get http", err)
+	// 	// return
+	// }
+
+	var netClient = &http.Client{
+		Timeout: time.Second * 20,
+		// Transport: &http.Transport{
+		// 	TLSClientConfig: &tls.Config{
+		// 		InsecureSkipVerify: true,
+		// 	},
+		// },
+	}
+	//Ошибка если сервер НЕ отвечает в тч по таймауту, или проблемы сертификатом
+	//при этом response не возвращает!
+	//если сервер отвечает паники нет возвращает любой статус
+
+	// response, err := netClient.Get("http://ggg.ione-cloud.net/jjjj")
+	response, err := netClient.Get("https://httpbin.org/delay/9")
 	if err != nil {
 		fmt.Println("Client:Failed to get http", err)
-		return
+		// return
 	}
 
 	fmt.Println("response.Status", response.Status)
 	fmt.Println("response.Request.URL", response.Request.URL)
 
-	body1, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println("Client:Failed to read response.Body)")
-		return
-	}
-	defer response.Body.Close()
-	fmt.Printf("response: %v\n", string(body1))
+	// body1, err := ioutil.ReadAll(response.Body)
+	// if err != nil {
+	// 	fmt.Println("Client:Failed to read response.Body)")
+	// 	return
+	// }
+	// defer response.Body.Close()
+	// fmt.Printf("response: %v\n", string(body1))
 
 }
 
@@ -152,10 +171,10 @@ func restClient2() {
 func main() {
 	// grpcClient()
 
-	// restClient()
+	// restClient1()
 
-	go restClient1()
-	<-time.After(1 * time.Second)
+	// go restClient1()
+	// <-time.After(1 * time.Second)
 	restClient2()
 
 	// httpJSONClient()
